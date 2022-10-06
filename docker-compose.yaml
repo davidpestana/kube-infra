@@ -1,0 +1,19 @@
+version: "3.4"
+services:
+  tools:
+    build: 
+      dockerfile: ./Dockerfile
+      context: ./
+    entrypoint: bash
+    working_dir: /root
+    volumes:
+      - ./:/root
+      - ~/.ssh:/root/.ssh
+    ports:
+      - 9001:80
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: eu-west-3
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+      GITHUB_USER: ${GITHUB_USER}
